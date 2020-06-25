@@ -396,6 +396,8 @@ class _MyBluePageState extends State<BlueTooth> {
             _connected = true;
           });
 
+          show('Device connected');
+
           connection.input.listen(Bluewrapper().onDataReceived).onDone(() {
             if (isDisconnecting) {
               print('Disconnecting locally!');
@@ -410,7 +412,6 @@ class _MyBluePageState extends State<BlueTooth> {
           print('Cannot connect, exception occurred');
           print(error);
         });
-        show('Device connected');
 
         setState(() => _isButtonUnavailable = false);
       }
