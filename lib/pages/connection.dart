@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iotincubatorbleapp/bluetooth.dart';
 import 'package:iotincubatorbleapp/pages/drawer.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -9,6 +10,7 @@ import 'dart:typed_data';
 class BlueTooth extends StatefulWidget {
   BlueTooth({Key key, this.title}) : super(key: key);
   final String title;
+  StreamController<Map<String, dynamic>> blueController = StreamController.broadcast();
   @override
   _MyBluePageState createState() => _MyBluePageState();
 }
@@ -27,7 +29,7 @@ class _MyBluePageState extends State<BlueTooth> {
   FlutterBluetoothSerial _bluetooth = FlutterBluetoothSerial.instance;
 
   // Track the Bluetooth connection with the remote device
-  BluetoothConnection connection;
+ static BluetoothConnection connection;
 
   int _deviceState;
 
@@ -47,8 +49,8 @@ class _MyBluePageState extends State<BlueTooth> {
 
   // Define some variables, which will be required later
   List<BluetoothDevice> _devicesList = [];
-  BluetoothDevice _device;
-  bool _connected = false;
+  static BluetoothDevice _device;
+  static bool _connected = false;
   bool _isButtonUnavailable = false;
 
   @override
@@ -87,7 +89,7 @@ class _MyBluePageState extends State<BlueTooth> {
   void dispose() {
     // Avoid memory leak and disconnect
     if (isConnected) {
-      isDisconnecting = false;
+      isDisconnecting = true;
 //      connection.dispose();
 //      connection = null;
     }
@@ -394,7 +396,7 @@ class _MyBluePageState extends State<BlueTooth> {
             _connected = true;
           });
 
-          connection.input.listen(_onDataReceived).onDone(() {
+          connection.input.listen(Bluewrapper().onDataReceived).onDone(() {
             if (isDisconnecting) {
               print('Disconnecting locally!');
             } else {
@@ -415,9 +417,15 @@ class _MyBluePageState extends State<BlueTooth> {
     }
   }
 
- void _onDataReceived(Uint8List data) {
-   print('Data incoming: ${ascii.decode(data)}');
- }
+
+
+
+
+
+
+
+
+
 
 
 // Method to disconnect bluetooth

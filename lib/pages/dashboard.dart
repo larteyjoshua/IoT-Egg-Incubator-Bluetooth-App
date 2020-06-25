@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iotincubatorbleapp/bluetooth.dart';
 import 'package:iotincubatorbleapp/pages/drawer.dart';
+import 'package:iotincubatorbleapp/pages/connection.dart';
+
 
 
 
@@ -89,7 +91,7 @@ class _MyHomePageState extends State<DashBoard> {
                           'Off',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () { publish('heatoff');},
+                        onPressed: () {  publish('heatoff');},
                       ),
                     ],
                   ),
@@ -171,7 +173,7 @@ class _MyHomePageState extends State<DashBoard> {
     );
   }
   void publish(String value) {
-    //Bluewrapper().publish(value);
+    Bluewrapper().publish(value);
   }
 
   _createListTile(String title, String value, String initials) {
