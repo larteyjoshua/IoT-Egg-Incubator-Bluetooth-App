@@ -79,9 +79,11 @@ class _MyHomePageState extends State<DashBoard> {
                           'On',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () {
-                          publish('heaton');
-                        },
+                        onPressed: !Bluewrapper.connection.isConnected
+                            ? null
+                            : () {
+                                publish('heaton');
+                              },
                       ),
                       RaisedButton(
                         color: Colors.red,
@@ -89,9 +91,11 @@ class _MyHomePageState extends State<DashBoard> {
                           'Off',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () {
-                          publish('heatoff');
-                        },
+                        onPressed: !Bluewrapper.connection.isConnected
+                            ? null
+                            : () {
+                                publish('heatoff');
+                              },
                       ),
                     ],
                   ),
@@ -115,9 +119,11 @@ class _MyHomePageState extends State<DashBoard> {
                           'On',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () {
-                          publish('airon');
-                        },
+                        onPressed: !Bluewrapper.connection.isConnected
+                            ? null
+                            : () {
+                                publish('airon');
+                              },
                       ),
                       RaisedButton(
                         color: Colors.red,
@@ -125,9 +131,11 @@ class _MyHomePageState extends State<DashBoard> {
                           'Off',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () {
-                          publish('airoff');
-                        },
+                        onPressed: !Bluewrapper.connection.isConnected
+                            ? null
+                            : () {
+                                publish('airoff');
+                              },
                       ),
                     ],
                   ),

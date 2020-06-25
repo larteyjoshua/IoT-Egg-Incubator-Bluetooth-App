@@ -440,6 +440,7 @@ class _MyBluePageState extends State<BlueTooth> {
     });
 
     await connection.close();
+    await Bluewrapper.connection.close();
     show('Device disconnected');
     if (!connection.isConnected) {
       setState(() {
