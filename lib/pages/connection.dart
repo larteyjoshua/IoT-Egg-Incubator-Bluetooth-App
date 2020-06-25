@@ -5,7 +5,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-import 'dart:typed_data';
 
 class BlueTooth extends StatefulWidget {
   BlueTooth({Key key, this.title}) : super(key: key);
@@ -392,9 +391,15 @@ class _MyBluePageState extends State<BlueTooth> {
             .then((_connection) {
           print('Connected to the device');
           connection = _connection;
+
+          // Now set the connection in the wrapper too.
+          // Since it is a singleton, it can be shared across pages with the same values.
+          Bluewrapper.connection = _connection;
           setState(() {
             _connected = true;
           });
+
+          show('Device connected');
 
           connection.input.listen(Bluewrapper().onDataReceived).onDone(() {
             if (isDisconnecting) {
@@ -410,7 +415,6 @@ class _MyBluePageState extends State<BlueTooth> {
           print('Cannot connect, exception occurred');
           print(error);
         });
-        show('Device connected');
 
         setState(() => _isButtonUnavailable = false);
       }
@@ -436,6 +440,7 @@ class _MyBluePageState extends State<BlueTooth> {
     });
 
     await connection.close();
+    await Bluewrapper.connection.close();
     show('Device disconnected');
     if (!connection.isConnected) {
       setState(() {
