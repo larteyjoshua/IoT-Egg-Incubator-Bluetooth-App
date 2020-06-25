@@ -57,9 +57,11 @@ class Bluewrapper {
   }
 
   Future<void> publish(String value) async {
-    connection.output.add(utf8.encode(value)); // Sending data
-    await connection.output.allSent;
-    print("Command:  $value");
+    if (_bluetoothState == BluetoothState.STATE_ON) {
+      connection.output.add(utf8.encode(value + "\r\n"));
+      await connection.output.allSent; // Sending data
+      print("Command:  $value");
+    }
   }
 
   @override
