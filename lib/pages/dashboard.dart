@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iotincubatorbleapp/bluetooth.dart';
 import 'package:iotincubatorbleapp/pages/drawer.dart';
-import 'package:iotincubatorbleapp/pages/connection.dart';
-
-
-
 
 class DashBoard extends StatefulWidget {
   DashBoard({Key key, this.title}) : super(key: key);
@@ -83,7 +79,9 @@ class _MyHomePageState extends State<DashBoard> {
                           'On',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () { publish('heaton');},
+                        onPressed: () {
+                          publish('heaton');
+                        },
                       ),
                       RaisedButton(
                         color: Colors.red,
@@ -91,7 +89,9 @@ class _MyHomePageState extends State<DashBoard> {
                           'Off',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () {  publish('heatoff');},
+                        onPressed: () {
+                          publish('heatoff');
+                        },
                       ),
                     ],
                   ),
@@ -115,7 +115,9 @@ class _MyHomePageState extends State<DashBoard> {
                           'On',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () { publish('airon');},
+                        onPressed: () {
+                          publish('airon');
+                        },
                       ),
                       RaisedButton(
                         color: Colors.red,
@@ -123,7 +125,8 @@ class _MyHomePageState extends State<DashBoard> {
                           'Off',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () { publish('airoff');
+                        onPressed: () {
+                          publish('airoff');
                         },
                       ),
                     ],
@@ -172,6 +175,7 @@ class _MyHomePageState extends State<DashBoard> {
       drawer: drawer,
     );
   }
+
   void publish(String value) {
     Bluewrapper().publish(value);
   }
@@ -195,7 +199,7 @@ class _MyHomePageState extends State<DashBoard> {
               child: Text(
                 initials,
                 style:
-                TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
             title: Text(
@@ -207,16 +211,16 @@ class _MyHomePageState extends State<DashBoard> {
             ),
             subtitle: !_isLoading
                 ? Text(
-              value,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 48.0,
-                  color: Colors.black),
-            )
+                    value,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 48.0,
+                        color: Colors.black),
+                  )
                 : Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 1.0,
-                )),
+                    child: CircularProgressIndicator(
+                    strokeWidth: 1.0,
+                  )),
           ),
         ),
       ),
