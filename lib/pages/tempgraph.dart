@@ -159,7 +159,7 @@ class _MyTempGraphPageState extends State< TempGraph> {
       child: Card(
         elevation: 0.5,
         child: Container(
-          height: 100.0,
+          height: 130.0,
           child: ListTile(
             trailing: Container(
               alignment: Alignment.center,

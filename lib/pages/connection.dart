@@ -28,7 +28,7 @@ class _MyBluePageState extends State<BlueTooth> {
   FlutterBluetoothSerial _bluetooth = FlutterBluetoothSerial.instance;
 
   // Track the Bluetooth connection with the remote device
- static BluetoothConnection connection;
+  static BluetoothConnection connection;
 
   int _deviceState;
 
@@ -391,9 +391,15 @@ class _MyBluePageState extends State<BlueTooth> {
             .then((_connection) {
           print('Connected to the device');
           connection = _connection;
+
+          // Now set the connection in the wrapper too.
+          // Since it is a singleton, it can be shared across pages with the same values.
+          Bluewrapper.connection = _connection;
           setState(() {
             _connected = true;
           });
+
+          show('Device connected');
 
           connection.input.listen(Bluewrapper().onDataReceived).onDone(() {
             if (isDisconnecting) {
@@ -409,23 +415,11 @@ class _MyBluePageState extends State<BlueTooth> {
           print('Cannot connect, exception occurred');
           print(error);
         });
-        show('Device connected');
 
         setState(() => _isButtonUnavailable = false);
       }
     }
   }
-
-
-
-
-
-
-
-
-
-
-
 
 // Method to disconnect bluetooth
   void _disconnect() async {
@@ -435,6 +429,7 @@ class _MyBluePageState extends State<BlueTooth> {
     });
 
     await connection.close();
+    await Bluewrapper.connection.close();
     show('Device disconnected');
     if (!connection.isConnected) {
       setState(() {
@@ -447,7 +442,7 @@ class _MyBluePageState extends State<BlueTooth> {
 // Method to send message,
 // for turning the Bluetooth device on
   void _sendOnMessageToBluetooth() async {
-    connection.output.add(utf8.encode("1" + "\r\n"));
+    connection.output.add(utf8.encode("7" + "\r\n"));
     await connection.output.allSent;
     show('Device Turned On');
     setState(() {
@@ -458,7 +453,7 @@ class _MyBluePageState extends State<BlueTooth> {
 // Method to send message,
 // for turning the Bluetooth device off
   void _sendOffMessageToBluetooth() async {
-    connection.output.add(utf8.encode("0" + "\r\n"));
+    connection.output.add(utf8.encode("9" + "\r\n"));
     await connection.output.allSent;
     show('Device Turned Off');
     setState(() {

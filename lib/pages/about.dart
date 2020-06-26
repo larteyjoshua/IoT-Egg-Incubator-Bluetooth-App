@@ -233,7 +233,7 @@ class _MyAboutPageState extends State<About> {
               child: ListBody(
                 children: <Widget>[
                   Text(
-                      'Joshua Lartey is a final year student of UCC. He is very passionate about the development of IoT system, hene the came about of this project'),
+                      'Joshua Lartey is a final year student of Univiersity of Cape Coast. He is very passionate about conception, innovation, construction, development of IoT systems, hence the coming about of this project.'),
                   SizedBox(height: 16),
                   Text('Call Joshua on 0249643365'),
                 ],
@@ -263,7 +263,7 @@ class _MyAboutPageState extends State<About> {
               child: ListBody(
                 children: <Widget>[
                   Text(
-                      'We are located on the Campus of UCC Science Block on the second floor.'),
+                      'We are located on the Campus of University of Cape Coast, Science Block on the second floor.'),
                   SizedBox(height: 16),
                   Text('Call Us on 0249643365'),
                 ],
@@ -294,7 +294,7 @@ class _MyAboutPageState extends State<About> {
                 children: <Widget>[
                   Text(
                       'This is a well establish and well purpose lab under the Department of Computer science'
-                          ' and Information technology for learning and development of embedded system and IoT Solutions'),
+                          ' and Information technology for learning and development of embedded system and IoT Solutionso Systems'),
                   SizedBox(height: 16),
                   Text('Visit IoTDev Lab for more detail'),
                 ],
