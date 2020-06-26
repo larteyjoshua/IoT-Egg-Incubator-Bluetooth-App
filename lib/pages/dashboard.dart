@@ -79,7 +79,7 @@ class _MyHomePageState extends State<DashBoard> {
                           'On',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: !Bluewrapper.connection.isConnected
+                        onPressed: (Bluewrapper.connection == null || !Bluewrapper.connection.isConnected)
                             ? null
                             : () {
                           publish('1');
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<DashBoard> {
                           'Off',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: !Bluewrapper.connection.isConnected
+                        onPressed: (Bluewrapper.connection == null || !Bluewrapper.connection.isConnected)
                             ? null
                             : () {
                           publish('2');
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<DashBoard> {
                           'On',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: !Bluewrapper.connection.isConnected
+                        onPressed: (Bluewrapper.connection == null || !Bluewrapper.connection.isConnected)
                             ? null
                             : () {
                           publish('3');
@@ -131,7 +131,7 @@ class _MyHomePageState extends State<DashBoard> {
                           'Off',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: !Bluewrapper.connection.isConnected
+                        onPressed: (Bluewrapper.connection == null || !Bluewrapper.connection.isConnected)
                             ? null
                             : () {
                           publish('4');
