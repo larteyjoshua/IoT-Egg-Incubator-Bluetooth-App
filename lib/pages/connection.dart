@@ -9,7 +9,8 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 class BlueTooth extends StatefulWidget {
   BlueTooth({Key key, this.title}) : super(key: key);
   final String title;
-  StreamController<Map<String, dynamic>> blueController = StreamController.broadcast();
+  StreamController<Map<String, dynamic>> blueController =
+      StreamController.broadcast();
   @override
   _MyBluePageState createState() => _MyBluePageState();
 }
@@ -206,8 +207,7 @@ class _MyBluePageState extends State<BlueTooth> {
                     onChanged: (bool value) {
                       future() async {
                         if (value) {
-                          await FlutterBluetoothSerial.instance
-                              .requestEnable();
+                          await FlutterBluetoothSerial.instance.requestEnable();
                         } else {
                           await FlutterBluetoothSerial.instance
                               .requestDisable();
@@ -261,9 +261,8 @@ class _MyBluePageState extends State<BlueTooth> {
                           RaisedButton(
                             onPressed: _isButtonUnavailable
                                 ? null
-                                : _connected ? _disconnect : _connect,
-                            child:
-                            Text(_connected ? 'Disconnect' : 'Connect'),
+                                : Bluewrapper().isConnected ? _disconnect : _connect,
+                            child: Text(Bluewrapper().isConnected ? 'Disconnect' : 'Connect'),
                           ),
                         ],
                       ),
@@ -276,8 +275,8 @@ class _MyBluePageState extends State<BlueTooth> {
                             color: _deviceState == 0
                                 ? colors['neutralBorderColor']
                                 : _deviceState == 1
-                                ? colors['onBorderColor']
-                                : colors['offBorderColor'],
+                                    ? colors['onBorderColor']
+                                    : colors['offBorderColor'],
                             width: 3,
                           ),
                           borderRadius: BorderRadius.circular(4.0),
@@ -295,8 +294,8 @@ class _MyBluePageState extends State<BlueTooth> {
                                     color: _deviceState == 0
                                         ? colors['neutralTextColor']
                                         : _deviceState == 1
-                                        ? colors['onTextColor']
-                                        : colors['offTextColor'],
+                                            ? colors['onTextColor']
+                                            : colors['offTextColor'],
                                   ),
                                 ),
                               ),
@@ -359,7 +358,6 @@ class _MyBluePageState extends State<BlueTooth> {
     );
   }
 
-
 // Create the List of devices to be shown in Dropdown Menu
   List<DropdownMenuItem<BluetoothDevice>> _getDeviceItems() {
     List<DropdownMenuItem<BluetoothDevice>> items = [];
@@ -406,6 +404,10 @@ class _MyBluePageState extends State<BlueTooth> {
               print('Disconnecting locally!');
             } else {
               print('Disconnected remotely!');
+              setState(() {
+                _connected = false;
+              });
+              show('Device disconnected remotely');
             }
             if (this.mounted) {
               setState(() {});
@@ -463,7 +465,8 @@ class _MyBluePageState extends State<BlueTooth> {
 
 // Method to show a Snackbar,
 // taking message as the text
-  Future show(String message, {
+  Future show(
+    String message, {
     Duration duration: const Duration(seconds: 3),
   }) async {
     await new Future.delayed(new Duration(milliseconds: 100));
@@ -476,5 +479,4 @@ class _MyBluePageState extends State<BlueTooth> {
       ),
     );
   }
-
 }
