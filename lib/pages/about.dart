@@ -124,7 +124,7 @@ class _MyAboutPageState extends State<About> {
         String moment =
             "${DateTime.now().year}.${DateTime.now().month}.${DateTime.now().day}_${DateTime.now().hour}.${DateTime.now().minute}";
 
-        File f = new File('${directory.path}/Incubator Data_$moment.csv');
+        File f = new File('${directory.path}/Incubator record_$moment.csv');
         String incubatorDatabse = const ListToCsvConverter().convert(rowdata);
         await f.writeAsString(incubatorDatabse);
         print('data downloaded');
@@ -233,7 +233,7 @@ class _MyAboutPageState extends State<About> {
               child: ListBody(
                 children: <Widget>[
                   Text(
-                      'Joshua Lartey is a final year student of Univiersity of Cape Coast. He is very passionate about conception, innovation, construction, development of IoT systems, hence the coming about of this project.'),
+                      'Joshua Lartey is a final year student of Univiersity of Cape Coast. He is very passionate about conception, innovation, construction anddevelopment of IoT systems, hence the coming about of this project.'),
                   SizedBox(height: 16),
                   Text('Call Joshua on 0249643365'),
                 ],
